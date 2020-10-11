@@ -1,0 +1,1 @@
+iframe {  width: 1100px;  height: 700px;  border: 1px solid #cccccc;  display: block;}.editor_row {    margin: 0 0 1em;    -webkit-column-count: 2;  /* Ch, Saf, And, BB  */     -moz-column-count: 2;  /* Fx */          column-count: 2;  /* IE 10, Op 11.1+ */    -webkit-column-gap: 1em;     -moz-column-gap: 1em;          column-gap: 1em;  }

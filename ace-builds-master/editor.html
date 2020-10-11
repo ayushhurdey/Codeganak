@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Editor</title>
+  <link rel="stylesheet" href="editor.css">
+  <style type="text/css" media="screen">
+    body {
+        overflow: hidden;
+    }
+
+    #editor {
+        margin: 0px;
+        position: absolute;
+        top: 48px;
+        bottom: 0px;
+        left: 0;
+        right: 0px;
+    }
+  </style>
+</head>
+<body bgcolor = "#1f2637" text = "white" onload="onLoad()">
+    <nav class = "topnav">
+    <img src = "instagram_profile_image.png" width = "30" height = "30"/><h1>CodeGanak</h1>
+	</nav> 
+
+<div class = "editor_div">
+<pre id="editor">import java.util.*;
+import java.lang.*;
+
+class Main{
+		public static void main(String args[]){
+			System.out.println("HELLO Java codeGanaks.");
+		}
+}</pre>
+
+		<script src = "src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+		<script src = "editor.js" type="text/javascript" charset="utf-8"></script>
+		<script src="src-noconflict/ext-language_tools.js"></script>		
+		<script>
+				var editor = ace.edit("editor");
+				editor.setTheme("ace/theme/twilight");
+				editor.session.setMode("ace/mode/java");
+				editor.setHighlightActiveLine(true);
+
+				editor.setOptions({
+					enableBasicAutocompletion: true,
+					enableSnippets: true,
+					enableLiveAutocompletion: true
+				});
+				
+				editor.commands.addCommand({
+					name: 'saveCommand',
+					bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
+					exec: function(editor) {
+						saveCode();
+					},
+					readOnly: true // false if this command should not apply in readOnly mode
+		    });
+		</script>
+		
+		
+	</div>
+	  <button class="button0" onclick= "saveCode()">
+            Save
+      </button>
+      <button class="button1" onclick= "submitCode()">
+            Run
+      </button>
+	  <button class="button2" onclick = "resetCode()">
+            Reset
+      </button>
+		
+      <select id="select1" onchange = "selectLang(this);"> 
+            <option value="java">Java</option> 
+            <option value="python">Python</option> 
+      </select>	
+	  
+	 <form class= "output_console">
+		<label for = "input"></label>
+		<textarea id = "in" name ="input" cols = "80" rows = "10" placeholder = "Input:" style = "background-color: #151515; color:white;"></textarea><br>	
+		<label for = "output"></label>
+		<textarea id = "out"  value ="Output:" cols = "80" rows = "20" readonly placeholder = "Output:" style = "background-color: #151515; color:white;"> </textarea>  
+	 </form>
+     <select id="font" onchange = "changeFont(this);">
+            <option value="-">fontSize</option> 	 
+            <option value="12">12px</option> 
+            <option value="13">13px</option>
+			<option value="14">14px</option>
+			<option value="15">15px</option>
+			<option value="16">16px</option>
+			<option value="17">17px</option>
+			<option value="18">18px</option>
+			<option value="19">19px</option>
+			<option value="20">20px</option>
+      </select>
+	
+</body>
+</html>
+
+
