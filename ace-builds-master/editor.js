@@ -65,6 +65,8 @@ function selectLang(obj) {
 } 
 
 function resetCode(){
+	var ifResetTrue = confirm("Your saved code will be lost.\n Do you still want to reset ?")
+	if(ifResetTrue){
 		var currentMode = editor.session.$mode.$id ;
 		if(currentMode.localeCompare('ace/mode/python') == 0){
 			editor.session.setValue("if __name__ == '__main__':\n\tprint('Welcome to CodeGanak Python.')");
@@ -76,6 +78,7 @@ function resetCode(){
 			var code = editor.getValue();
 			localStorage.setItem('code',code);
 		}
+	}
 }
 
 function changeFont(obj){
