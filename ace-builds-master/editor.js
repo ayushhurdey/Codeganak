@@ -1,11 +1,14 @@
 function onLoad(){
-	if(localStorage.getItem('code') === ""){
+	if(localStorage.getItem('code') === null){
 		resetCode();
 		var code = editor.getValue();
 		localStorage.setItem('code',code);
 	}
 	var code = localStorage.getItem('code');
 	editor.session.setValue(code);
+	if(localStorage.getItem('fontSize') !== null){
+		document.getElementById('editor').style.fontSize = localStorage.getItem('fontSize') + 'px';
+	}
 }
 
 
@@ -38,6 +41,9 @@ function submitCode(){
 			document.getElementById('out').value = json.output;
 			console.log(json.output);
 		}
+		else{
+			document.getElementById('out').value = "Some error occurred while connecting.";
+		}
 	};
 	var data = JSON.stringify({
 		"lang": lang,
@@ -59,6 +65,8 @@ function selectLang(obj) {
 } 
 
 function resetCode(){
+	var ifResetTrue = confirm("Your saved code will be lost.\n Do you still want to reset ?")
+	if(ifResetTrue){
 		var currentMode = editor.session.$mode.$id ;
 		if(currentMode.localeCompare('ace/mode/python') == 0){
 			editor.session.setValue("if __name__ == '__main__':\n\tprint('Welcome to CodeGanak Python.')");
@@ -70,11 +78,13 @@ function resetCode(){
 			var code = editor.getValue();
 			localStorage.setItem('code',code);
 		}
+	}
 }
 
 function changeFont(obj){
 		var selectedValue = obj.options[obj.selectedIndex].value;
 		console.log(selectedValue);
-		document.getElementById('editor').style.fontSize= selectedValue + 'px';
+		document.getElementById('editor').style.fontSize = selectedValue + 'px';
+		localStorage.setItem('fontSize', selectedValue);
 }
 
